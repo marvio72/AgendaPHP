@@ -34,6 +34,7 @@ body {
     -webkit-box-shadow: 0px 2px 9px 0px rgba(0, 0, 0, 0.75);
     -moz-box-shadow   : 0px 2px 9px 0px rgba(0, 0, 0, 0.75);
     box-shadow        : 0px 2px 9px 0px rgba(0, 0, 0, 0.75);
+    border-radius: 10px;
 }
 h1,h2 {
     font-family: var(--fuenteSecundaria);
@@ -65,4 +66,54 @@ form span {
     margin-bottom: 1rem;
     clear: both;
     display: block;
+}
+@media only screen and (min-width:768px) {
+    .campos {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .campo {
+        flex: 0 0 calc(33.3% - 1rem);
+    }
+}
+.campo {
+    padding: .5rem 0;
+}
+.campo label {
+    font-size: 1.2rem;
+    font-family: var(--fuentePrimaria);
+}
+.campo input[type="text"],
+.campo input[type="tel"] {
+    width: 100%;
+    border: none;
+    padding: .5rem;
+    height: 3rem;
+    margin-top: .5rem;
+    font-size: 1.2rem;
+}
+.enviar {
+    display: flex;
+    justify-content: flex-end;
+}
+.campo input[type="submit"] {
+    text-transform: uppercase;
+    flex: 1;
+    padding: 1rem 4rem;
+    font-size: 1.2rem;
+    border: none;
+    font-family: var(--fuentePrimaria);
+    color: var(--titulo);
+    background-color: var(--primario);
+    transition: background-color .6s ease-in-out;
+}
+.campo input[type="submit"]:hover {
+    background-color: var(--primarioObscuro);
+    cursor: pointer;
+}
+@media only screen and (min-width:768px) {
+   .campo input[type="submit"] {
+      flex: 0 0 auto;
+   }
 }
