@@ -7,23 +7,9 @@
 <div class="bg-amarillo contenedor sombra">
     <form action="#" id="contacto">
         <legend>Añada un contacto <span>Todos los campos son obligatorios</span></legend>
-        <div class="campos">
-            <div class="campo">
-                <label for="nombre">Nombre:</label>
-                <input type="text" name="nombre" id="nombre" placeholder="Nombre Contacto">
-            </div>
-            <div class="campo">
-                <label for="empresa">Empresa:</label>
-                <input type="text" name="empresa" id="empresa" placeholder="Nombre Empresa">
-            </div>
-            <div class="campo">
-                <label for="telefono">Teléfono:</label>
-                <input type="tel" name="telefono" id="telefono" placeholder="Teléfono">
-            </div>
-        </div>
-        <div class="campo enviar">
-            <input type="submit" value="Añadir ">
-        </div>
+        
+        <?php include 'inc/layout/formulario.php'; ?>
+
     </form>
 </div>
 <!--Fin de bg-amarillo contenedor sombra-->
@@ -52,7 +38,7 @@
                         <td>Oversistemas</td>
                         <td>3339541057</td>
                         <td>
-                            <a href="#" class="btn-editar btn"><i class="fas fa-pen-square"></i></a>
+                            <a href="editar.php?id=1" class="btn-editar btn"><i class="fas fa-pen-square"></i></a>
                             <button data-id="1" type="button" class="btn-borrar btn"><i class="fas fa-trash-alt"></i></button>
                         </td>
                     </tr>
@@ -61,7 +47,7 @@
                         <td>Oversistemas</td>
                         <td>3339541057</td>
                         <td>
-                            <a href="#" class="btn-editar btn"><i class="fas fa-pen-square"></i></a>
+                            <a href="editar.php?id=1" class="btn-editar btn"><i class="fas fa-pen-square"></i></a>
                             <button data-id="1" type="button" class="btn-borrar btn"><i class="fas fa-trash-alt"></i></button>
                         </td>
                     </tr>
@@ -70,7 +56,7 @@
                         <td>Oversistemas</td>
                         <td>3339541057</td>
                         <td>
-                            <a href="#" class="btn-editar btn"><i class="fas fa-pen-square"></i></a>
+                            <a href="editar.php?id=1" class="btn-editar btn"><i class="fas fa-pen-square"></i></a>
                             <button data-id="1" type="button" class="btn-borrar btn"><i class="fas fa-trash-alt"></i></button>
                         </td>
                     </tr>
