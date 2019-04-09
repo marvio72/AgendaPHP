@@ -58,29 +58,29 @@ body {
     background-color: var(--titulo);
 }
 .barra {
+    align-items: center;
     display: grid;
     grid-template-columns: 100px 1fr;
-    align-items: center;
 }
 
 .sombra {
     -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.5);
     -moz-box-shadow   : 0px 2px 5px 0px rgba(0, 0, 0, 0.5);
     box-shadow        : 0px 2px 5px 0px rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
+    border-radius     : 10px;
 }
 h1,h2 {
     font-family: var(--fuenteSecundaria);
-    text-align: center;
     margin: 0;
+    text-align: center;
 }
 h1 {
     color: var(--titulo);
     padding: 20px;
 }
 h2 {
-    font-family: var(--fuenteSecundaria);
     color: var(--primario);
+    font-family: var(--fuenteSecundaria);
     font-size: 2rem;
 }
 .contenedor-barra {
@@ -108,11 +108,11 @@ h2 {
 .volver {
     background-color: var(--secundario);
     border-radius: 5px;
-    text-align: center;
     color: var(--negro);
-    font-weight: 700;
     font-size: 1.2rem;
+    font-weight: 700;
     padding: .5rem;
+    text-align: center;
 }
 
 /*
@@ -124,22 +124,22 @@ h2 {
  
 */
 form {
-    padding: 3rem;
     margin-top: 2rem;
+    padding: 3rem;
 }
 form legend {
+    display: block;
     font-family: var(--fuenteSecundaria);
     font-size: 2rem;
     text-align: center;
-    display: block;
 }
 
 form span {
-    font-size: 1rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
     clear: both;
     display: block;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
 }
 @media only screen and (min-width:768px) {
     .campos {
@@ -159,25 +159,25 @@ form span {
 }
 .campo input[type="text"],
 .campo input[type="tel"] {
-    width: 100%;
     border: none;
-    padding: .5rem;
+    font-size: 1.2rem;
     height: 3rem;
     margin-top: .5rem;
-    font-size: 1.2rem;
+    padding: .5rem;
+    width: 100%;
 }
 .enviar {
     display: flex;
     justify-content: flex-end;
 }
 .campo input[type="submit"] {
-    text-transform: uppercase;
-    flex: 1;
-    padding: 1rem 4rem;
-    font-size: 1.2rem;
+    background-color: var(--primario);
     border: none;
     color: var(--titulo);
-    background-color: var(--primario);
+    flex: 1;
+    font-size: 1.2rem;
+    padding: 1rem 4rem;
+    text-transform: uppercase;
     transition: background-color .6s ease-in-out;
 }
 .campo input[type="submit"]:hover {
@@ -200,38 +200,38 @@ form span {
 */
 
 .contactos {
-    padding: 2rem;
     margin-top: 3rem;
+    padding: 2rem;
 }
 .contenedor-contactos {
-    max-width: 800px;
     margin: 4rem auto 0 auto;
+    max-width: 800px;
 }
 .total-contactos {
+    color: var(--primario);
     font-family: var(--fuenteSecundaria);
+    font-size: 2rem;
     margin: 2rem 0;
     text-align: center;
-    color: var(--primario);
-    font-size: 2rem;
 }
 .total-contactos span {
     font-size: 3rem;
     font-weight: 900;
 }
 .buscador {
-    width: 100%;
-    height: 3rem;
-    padding: 1rem;
     border: 1px solid var(--borde);
+    height: 3rem;
     margin: 2rem 0;
+    padding: 1rem;
+    width: 100%;
 }
 .contenedor-tabla {
     overflow: scroll;
 }
 .listado-contactos {
-    width: 100%;
-    margin-top: 1rem;
     border-collapse: collapse;
+    margin-top: 1rem;
+    width: 100%;
 }
 .listado-contactos thead {
     background-color: var(--primario);
@@ -260,11 +260,11 @@ form span {
  
 */
 .notificacion {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    padding: 1rem 3rem;
     opacity: 0;
+    padding: 1rem 3rem;
+    position: fixed;
+    right: 1rem;
+    top: 1rem;
     transition: opacity .5s ease;
 }
 .visible {
