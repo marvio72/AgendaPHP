@@ -1,4 +1,7 @@
-<?php include 'inc/layout/header.php'; ?>
+<?php
+require 'inc/funciones/funciones.php';
+require 'inc/layout/header.php';
+?>
 
 <div class="contenedor-barra">
     <h1>Agenda de Contactos</h1>
@@ -7,7 +10,7 @@
 <div class="bg-amarillo contenedor sombra">
     <form action="#" id="contacto">
         <legend>Añada un contacto <span>Todos los campos son obligatorios</span></legend>
-        
+
         <?php include 'inc/layout/formulario.php'; ?>
 
     </form>
@@ -33,33 +36,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Marco</td>
-                        <td>Oversistemas</td>
-                        <td>3339541057</td>
-                        <td>
-                            <a href="editar.php?id=1" class="btn-editar btn"><i class="fas fa-pen-square"></i></a>
-                            <button data-id="1" type="button" class="btn-borrar btn"><i class="fas fa-trash-alt"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Marco</td>
-                        <td>Oversistemas</td>
-                        <td>3339541057</td>
-                        <td>
-                            <a href="editar.php?id=1" class="btn-editar btn"><i class="fas fa-pen-square"></i></a>
-                            <button data-id="1" type="button" class="btn-borrar btn"><i class="fas fa-trash-alt"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Marco</td>
-                        <td>Oversistemas</td>
-                        <td>3339541057</td>
-                        <td>
-                            <a href="editar.php?id=1" class="btn-editar btn"><i class="fas fa-pen-square"></i></a>
-                            <button data-id="1" type="button" class="btn-borrar btn"><i class="fas fa-trash-alt"></i></button>
-                        </td>
-                    </tr>
+                    <?php $contactos = obtenerContactos();
+
+                    if ($contactos->num_rows) {
+                        foreach ($contactos as $contacto) { ?>
+                            <tr>
+                                <td><?php echo $contacto['nombre']; ?></td>
+                                <td><?php echo $contacto['empresa']; ?></td>
+                                <td><?php echo $contacto['telefono']; ?></td>
+                                <td>
+                                    <a href="editar.php?id=<?php echo $contacto['id']; ?>" class="btn-editar btn"><i class="fas fa-pen-square"></i></a>
+                                    <button data-id="<?php echo $contacto['id']; ?>" type="button" class="btn-borrar btn"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                        <?php }
+                } ?>
                 </tbody>
             </table>
         </div>
