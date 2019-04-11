@@ -105,6 +105,10 @@ h2 {
     color: var(--primario);
 }
 
+.btn-borrar:hover {
+    cursor: pointer;
+}
+
 .volver {
     background-color: var(--secundario);
     border-radius: 5px;

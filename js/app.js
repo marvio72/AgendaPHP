@@ -6,6 +6,8 @@ eventListeners();
 function eventListeners() {
     // Cuando el formulario de crear o editar se ejecuta
     formularioContactos.addEventListener('submit', leerFormulario);
+    // Listener para el boton eliminar
+    listadoContactos.addEventListener('click', eliminarContacto);
 }
 
 function leerFormulario(e) {
@@ -104,6 +106,48 @@ function insertarBD(datos){
     }
      //enviar los datos
     xhr.send(datos);
+}
+// Eliminar el contacto
+// e reporta a que elemento le damos clic
+// parentElement nos permite ir del hijo hacia el padre. Nos reporta que es el boton y no el icono.
+// El codigo de eliminar solo se ejecuta cuando el resultado es true.
+function eliminarContacto(e){
+    if (e.target.parentElement.classList.contains('btn-borrar')) {
+        // tomar el id del elemento que vamos a borrar
+        const id = e.target.parentElement.getAttribute('data-id');
+        // console.log(id);
+        // preguntar al usuario de eliminar el contacto
+        const respuesta = confirm('¿Estás Seguro (a) ?');
+
+        if(respuesta) {
+            // llamado a ajax
+            // crear el objeto
+            const xhr = new XMLHttpRequest();
+
+            // abrir la conexión
+            xhr.open('GET', `inc/modelos/modelo-contactos.php?id=${id}&accion=borrar`, true);
+
+            // leer la respuesta
+            xhr.onload = function() {
+                if(this.status === 200) {
+                    const resultado = JSON.parse(xhr.responseText);
+
+                    if(resultado.respuesta == 'correcto'){
+                        // Eliminar el registro del DOM
+                        console.log(e.target.parentElement.parentElement.parentElement);
+                        e.target.parentElement.parentElement.parentElement.remove();
+                        // mostrar Notificación
+                        mostrarNotificacion('Contacto eliminado', 'correcto');
+                    } else {
+                        // Mostramos una notificacion
+                        mostrarNotificacion('Hubo un error...', 'error');
+                    }
+                }
+            }
+            // enviar la petición
+            xhr.send();
+        } 
+    }
 }
 
 // Notificación en pantalla
