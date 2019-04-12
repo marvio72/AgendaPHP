@@ -1,13 +1,21 @@
 const formularioContactos = document.querySelector('#contacto');
       listadoContactos = document.querySelector('#listado-contactos tbody');
+      inputBuscador = document.querySelector('#buscar');
 
 eventListeners();
+
 
 function eventListeners() {
     // Cuando el formulario de crear o editar se ejecuta
     formularioContactos.addEventListener('submit', leerFormulario);
     // Listener para el boton eliminar
-    listadoContactos.addEventListener('click', eliminarContacto);
+    if(listadoContactos){
+        listadoContactos.addEventListener('click', eliminarContacto);
+    }
+    // buscador
+    inputBuscador.addEventListener('input', buscarContactos);
+    // Numero de contactos
+    numeroContactos();
 }
 
 function leerFormulario(e) {
@@ -35,6 +43,10 @@ function leerFormulario(e) {
             insertarBD(infoContacto);
         } else {
             // editar el contacto
+            // leer el Id
+            const idRegistro = document.querySelector('#id').value;
+            infoContacto.append('id', idRegistro);
+            actualizarRegistro(infoContacto);
         }
     }
 }
@@ -102,11 +114,43 @@ function insertarBD(datos){
             document.querySelector('form').reset();
             //Mostrar la notificación
             mostrarNotificacion('Contacto Creado Correctamente', 'correcto');
+            // Actualizamos el número
+            numeroContactos();
         }
     }
      //enviar los datos
     xhr.send(datos);
 }
+
+function actualizarRegistro(datos) {
+    // crear el objeto
+        const xhr = new XMLHttpRequest();
+    // abrir la conexion
+        xhr.open('POST', 'inc/modelos/modelo-contactos.php', true);
+
+    // leer la respuesta
+        xhr.onload = function() {
+            if(this.status === 200){
+                const respuesta = JSON.parse(xhr.responseText);
+
+                if (respuesta.respuesta === 'correcto') {
+                    // mostrar notificación de Correcto
+                    mostrarNotificacion('Contacto Modificado', 'correcto');
+                } else {
+                    // hubo un error
+                    mostrarNotificacion('El contacto no fue modificado', 'error');
+                }
+                // Después de 3 segundos redireccionar
+                setTimeout(() => {
+                    window.location.href = 'index.php';
+                }, 4000);
+            }
+        }
+
+    // enviar la peticion
+        xhr.send(datos);
+}
+
 // Eliminar el contacto
 // e reporta a que elemento le damos clic
 // parentElement nos permite ir del hijo hacia el padre. Nos reporta que es el boton y no el icono.
@@ -138,6 +182,8 @@ function eliminarContacto(e){
                         e.target.parentElement.parentElement.parentElement.remove();
                         // mostrar Notificación
                         mostrarNotificacion('Contacto eliminado', 'correcto');
+                        // Actualizar número
+                        numeroContactos(); 
                     } else {
                         // Mostramos una notificacion
                         mostrarNotificacion('Hubo un error...', 'error');
@@ -170,4 +216,39 @@ function mostrarNotificacion(mensaje, clase) {
             }, 500);
         }, 3000);
     }, 100);
+}
+// Buscador de registros
+function buscarContactos(e) {
+    // sirve para comprobar como funciona la funcion
+    // console.log(e.target.value);
+
+    // La i sirve para desactivar el casesensivity.
+    const expresion = new RegExp(e.target.value, "i"),
+        registros = document.querySelectorAll('tbody tr');
+
+            registros.forEach(registro => {
+                registro.style.display = 'none';
+
+            //   console.log(registro.childNodes[1].textContent.replace(/\s/g, " ").search(expresion) != -1);
+                if(registro.childNodes[1].textContent.replace(/\s/g, " ").search(expresion) != -1 ){
+                    registro.style.display = 'table-row';
+                }
+                numeroContactos();
+             })
+}
+
+// Muestra el número de Contactos
+function numeroContactos() {
+    const totalContactos = document.querySelectorAll('tbody tr'),
+          contenedorNumero = document.querySelector('.total-contactos span');
+
+    let total = 0;
+
+    totalContactos.forEach(contacto => {
+        if(contacto.style.display === '' || contacto.style.display === 'table-row'){
+            total++;
+        }
+    // console.log(total);
+    contenedorNumero.textContent = total;
+    })
 }
